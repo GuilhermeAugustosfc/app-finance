@@ -5,7 +5,7 @@ import { Audio } from "expo-av";
 import axios from "axios";
 import * as FileSystem from "expo-file-system";
 
-const MicrophoneComponent = () => {
+const MicrophoneComponent = ({ onMicrophoneResult }) => {
   const [isRecording, setIsRecording] = useState(false);
   const [recording, setRecording] = useState(null);
   const [sound, setSound] = useState(null);
@@ -44,9 +44,7 @@ const MicrophoneComponent = () => {
         console.log("Erro ao gravar o som:", status);
         return;
       }
-      await soundObject.playAsync();
       const uri = recording.getURI();
-
       const base64Audio = await FileSystem.readAsStringAsync(uri, {
         encoding: FileSystem.EncodingType.Base64,
       });
@@ -63,11 +61,11 @@ const MicrophoneComponent = () => {
     };
     // Enviar o áudio para o endpoint usando o Axios
     const response = await axios.post(
-      "http://localhost:8000/cadastrar_gasto/",
+      "https://0d8c-179-96-128-187.ngrok-free.app/cadastrar_gasto/",
       form
     );
-
-    console.log("Resposta do servidor:", response.data);
+    console.log(typeof response.data);
+    onMicrophoneResult(response.data);
   };
 
   useEffect(() => {

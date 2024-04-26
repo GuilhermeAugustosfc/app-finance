@@ -83,6 +83,10 @@ android {
     buildToolsVersion rootProject.ext.buildToolsVersion
     compileSdk rootProject.ext.compileSdkVersion
 
+    dependencies {
+        compile project(':@react-native-voice_voice')
+    }
+    
     namespace 'com.ministrodamagia123.appFianceNew'
     defaultConfig {
         applicationId 'com.ministrodamagia123.appFianceNew'

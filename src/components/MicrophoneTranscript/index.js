@@ -25,28 +25,13 @@ const VoiceTest = () => {
     if (!hasPermission) {
       return;
     }
-    Voice.start("en-US");
-  };
 
-  useEffect(() => {
-    if (hasPermission) {
-      Voice.onSpeechStart = () => {
-        console.log("Speech recognition started");
-        setRecognizedText("");
-      };
-      Voice.onSpeechEnd = () => {
-        console.log("Speech recognition ended");
-      };
-      Voice.onSpeechResults = (results) => {
-        setRecognizedText(results.value[0]);
-      };
-      return () => {
-        Voice.onSpeechStart = null;
-        Voice.onSpeechEnd = null;
-        Voice.onSpeechResults = null;
-      };
+    try {
+      Voice.start("en-US");
+    } catch (error) {
+      console.log(error);
     }
-  }, [hasPermission]);
+  };
 
   return (
     <View>

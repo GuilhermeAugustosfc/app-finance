@@ -5,7 +5,8 @@ import { View, Text } from "react-native";
 const MicrophoneComponent = () => {
   return (
     <View>
-      <VoiceTest />
+      <Text>Aqui vai ter outra coisa</Text>
+      {/* <VoiceTest /> */}
     </View>
   );
 };
